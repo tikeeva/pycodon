@@ -1,6 +1,9 @@
-from codon.utils import data_from_file
-from codon.codon import Sequence
+# from codon.utils import data_from_file
+# from codon.codon import Sequence
+from itertools import product
 from pathlib import Path
+from codon.metasequence import Metasequence
+from codon.utils import make_nucleotides, data_from_file
 
 if __name__ == '__main__':
 
@@ -9,6 +12,8 @@ if __name__ == '__main__':
     filepath = str(DATA_DIR / 'Sequence1.txt')
     seq: str = data_from_file(file=filepath)
 
-    s = Sequence(sequence=seq)
+    # s = Sequence(sequence=seq)
     #print(s.nucleotide_counter)
-    print(s.codon_counter.get('G'))
+    # print(s.codon_counter.get('G'))
+    m = Metasequence(seq)
+    print(m.make_sequences())

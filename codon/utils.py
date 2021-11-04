@@ -10,9 +10,11 @@ def validation(seq: str) -> None:
     diff = set(seq) - set(iupac_nucleotides.keys())
     if diff:
         raise ValueError(f'There are invalid nucleotides in sequence: {diff}. Or invalid path {seq}')
-    if len(seq) % 3:
-        raise ValueError(f'Sequence must have length divisible by 3. Sequence length equals {len(seq)}')
+    
 
+def make_nucleotides(nucl: str) -> List[str]:
+    return [i for i in iupac_nucleotides[nucl]]
+    
 
 def data_from_file(file: str) -> str:
     with open(file) as f:
@@ -43,7 +45,6 @@ def get_ambiguous_nucleotides(seq) -> Dict[str, List[int]]:
         if not nucl in 'ACGTU':
             ambiguous_nucleotides[nucl].append(i)
     return dict(ambiguous_nucleotides)
-
 
 
 def make_multisequence(levels: List[List[int]], content: Dict[int, str]) -> List[str]:
