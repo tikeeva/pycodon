@@ -11,7 +11,6 @@ def prot_frame(seq: str):
             start_pos.append(i)
         if seq[i:(i + 3)] in stop:
             stop_pos.append(i)
-    print(start_pos, stop_pos)
 
     # Checking if there is start or stop codons for correct protein generation
     if start_pos and stop_pos:
