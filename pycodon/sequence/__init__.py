@@ -1,7 +1,9 @@
+from __future__ import annotations
+
 from collections import Counter
 from typing import Iterable, List, Optional
-from __future__ import annotations
-from .utils import make_sequences, make_protein
+
+from .utils import make_protein, make_sequences
 
 
 class Sequence():

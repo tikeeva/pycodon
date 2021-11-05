@@ -21,7 +21,7 @@ print(sequence.protein)
     sequences = read_file('path/to/file').make_sequences()
     sequence = sequences[0]
     counts = sequence.nucleotide_counter
-    freq = {k: v/sum(counts.values()) for k, v in counts.items()}
+    freq = {k: v/len(sequence)) for k, v in counts.items()}
     print(freq)
     ```
     б) GС (почему GС -они дают три водородные связи и дают термоустойчивость ДНК, это важно для отжига праймеров для ПЦР):
@@ -69,7 +69,7 @@ for seq in seqs:
     ```
     2. Определить сколько белков закодировано в последовательности
     ```python
-    
+
     ```
     3. Вывести варианты последовательностей закодированных белков с указанием положения в геноме (начало старт кодона и конец рамки считывания, т.е. исключая стопкодон). 
     ```python

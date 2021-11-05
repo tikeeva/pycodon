@@ -20,6 +20,5 @@ def make_protein(self, sequence, rna) -> str:
         protein: str = ''
         for i in range(0, len(sequence), 3):
             triplet: str = sequence[i:i+3]
-            amino_acid: str = codons[triplet]
-            protein += amino_acid
+            protein += codons[triplet]
         return protein
