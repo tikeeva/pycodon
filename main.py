@@ -1,6 +1,7 @@
 from pathlib import Path
-from codon.metasequence import Metasequence
-from codon.utils import data_from_file
+from pycodon.metasequence import Metasequence
+from pycodon.sequence import Sequence
+from pycodon.utils import data_from_file
 
 if __name__ == '__main__':
 
@@ -12,6 +13,7 @@ if __name__ == '__main__':
     # s = Sequence(sequence=seq)
     #print(s.nucleotide_counter)
     # print(s.codon_counter.get('G'))
-    m = Metasequence(seq)
-    print(m.make_sequences())
+    m = Sequence(seq)
+    print(m)
+    print('TACA' in m)
 

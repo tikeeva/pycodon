@@ -22,3 +22,18 @@ def make_protein(self, sequence, rna) -> str:
             triplet: str = sequence[i:i+3]
             protein += codons[triplet]
         return protein
+
+def indexcheck(f):
+    def inner(self, index, *args):
+        if isinstance(index, int):
+            if index < 0:
+                index += len(self)
+            if not (0 <= index < len(self)):
+                raise IndexError('list index out of range')
+        elif isinstance(index, slice):
+            index = index.indices(len(self))
+        else:
+            raise TypeError('Not valid type of index')
+
+        return f(self, index, *args)
+    return inner

@@ -1,10 +1,5 @@
-from collections import defaultdict
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Set
 from itertools import product
-
-from .codon_dict import iupac_nucleotides
-from .codon import Codon
-
 
 
 
@@ -16,19 +11,6 @@ def data_from_file(file: str) -> str:
     return first_row
 
 
-def make_codon(triplet: str, rna: bool) -> List[Codon]:
-    codons: List[Codon] = []
-    if not set(triplet) - set('ACGT'):
-        codons.append(Codon(triplet, rna=rna))
-    else:
-        triplets: List[str] = list(map(iupac_nucleotides.get, triplet))
-        triplets: List[Tuple[str, str, str]] = list(product(*triplets))
-        triplets: List[str] = list(map(''.join, triplets))
-        for trip in triplets:
-            codon: Codon = Codon(trip, rna=rna)
-            if not codon in codons:
-                codons.append(codon)
-    return codons
 
 
 

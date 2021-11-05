@@ -3,10 +3,10 @@ from __future__ import annotations
 from collections import Counter
 from typing import Iterable, List, Optional
 
-from .utils import make_protein, make_sequences
+from .utils import make_protein, make_sequences, indexcheck
+from collections import abc
 
-
-class Sequence():
+class Sequence(abc.Sequence):
 
     def __init__(self, 
                  sequence: str,
@@ -14,6 +14,21 @@ class Sequence():
         self.sequence: str = sequence
         self.rna: bool = rna
         self.prot: str = ''
+
+    @indexcheck
+    def __getitem__(self, index: int):
+        if isinstance(index, int):
+            return self.sequence[index]
+        else:   # if index is tuple of indices
+            return Sequence(sequence=''.join(self[i] for i in range(*index)),
+                            rna=self.rna)
+
+    def __contains__(self, x: object) -> bool:
+        if not isinstance(x,  (Sequence, str)):
+            raise TypeError(f'Must be str or Sequence')
+        if isinstance(x, str):
+            return x in self.sequence
+        return x.sequence in self.sequence
 
     def __repr__(self) -> str:
         return self.sequence
