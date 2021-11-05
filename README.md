@@ -8,3 +8,8 @@
 ```bash 
 jupyter notebook practice.ipynb
 ```
+
+Пока разработано два класса: `Sequence` и `Metasequence`.
+```python
+
+```

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections import Counter
-from typing import Iterable, List, Optional
+from typing import Iterable, List, Optional, Union
 
 from .utils import make_protein, make_sequences, indexcheck
 from collections import abc
@@ -16,7 +16,7 @@ class Sequence(abc.Sequence):
         self.prot: str = ''
 
     @indexcheck
-    def __getitem__(self, index: int):
+    def __getitem__(self, index: int) -> Union[Sequence, str]:
         if isinstance(index, int):
             return self.sequence[index]
         else:   # if index is tuple of indices
