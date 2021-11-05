@@ -6,15 +6,7 @@ from .codon_dict import iupac_nucleotides
 from .codon import Codon
 
 
-def validation(seq: str) -> None:
-    diff = set(seq) - set(iupac_nucleotides.keys())
-    if diff:
-        raise ValueError(f'There are invalid nucleotides in sequence: {diff}. Or invalid path {seq}')
-    
 
-def make_nucleotides(nucl: str) -> List[str]:
-    return [i for i in iupac_nucleotides[nucl]]
-    
 
 def data_from_file(file: str) -> str:
     with open(file) as f:
@@ -39,12 +31,7 @@ def make_codon(triplet: str, rna: bool) -> List[Codon]:
     return codons
 
 
-def get_ambiguous_nucleotides(seq) -> Dict[str, List[int]]:
-    ambiguous_nucleotides: Dict[str, List[int]] = defaultdict(list)
-    for i, nucl in enumerate(seq):
-        if not nucl in 'ACGTU':
-            ambiguous_nucleotides[nucl].append(i)
-    return dict(ambiguous_nucleotides)
+
 
 
 def make_multisequence(levels: List[List[int]], content: Dict[int, str]) -> List[str]:
@@ -55,3 +42,32 @@ def make_multisequence(levels: List[List[int]], content: Dict[int, str]) -> List
         for node in path:
             multisequence[i] += content[node]
     return multisequence
+
+
+
+
+def make_frames(seq: str, start: Set[str]):
+    start = {'ATG',}
+    start_bacteria = {'ATG', 'TTG', 'CTG', 'GTG'}
+    stop = {'TAA', 'TGA', 'TAG'}
+    start_pos, stop_pos = [], []
+    for i in range(len(seq)):
+        if seq[i:(i + 3)] in start:
+            start_pos.append(i)
+        if seq[i:(i + 3)] in stop:
+            stop_pos.append(i)
+
+    # Checking if there is start or stop codons for correct protein generation
+    if start_pos and stop_pos:
+        frames = [frame for frame in product(start_pos, stop_pos) if valid_frame(*frame, stop_pos)]           
+    else:
+        return None
+        
+    return frames
+
+
+def valid_frame(start, stop, stop_set):
+    for i in stop_set:
+        if start < i < stop and (i - start) % 3 == 0:
+            return False
+    return stop - start > 50 and (stop - start) % 3 == 0
