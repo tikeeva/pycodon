@@ -46,10 +46,12 @@ class Sequence(abc.Sequence):
     
     def make_frames(self, 
                     start_codons: Iterable[str],
-                    stop_codons: Iterable[str]) -> Optional[List[Sequence]]:
+                    stop_codons: Iterable[str],
+                    len_seq: int = 50) -> Optional[List[Sequence]]:
         seqs: List[str] = make_sequences(seq=self.sequence,
                                          start_codons=start_codons,
-                                         stop_codons=stop_codons)
+                                         stop_codons=stop_codons,
+                                         len_seq=len_seq)
         if seqs:
             return [Sequence(seq, rna=self.rna) for seq in seqs]
         return []

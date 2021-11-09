@@ -1,7 +1,7 @@
 from typing import Iterable, List, Set
 from ..codon_dict import rna_codons, dna_codons
 
-def make_sequences(seq: str, start_codons: Iterable[str], stop_codons: Iterable[str]) -> List[str]:
+def make_sequences(seq: str, start_codons: Iterable[str], stop_codons: Iterable[str], len_seq: int) -> List[str]:
     start: Set[str] = set(start_codons)
     stop: Set[str] = set(stop_codons)
     seqs = []
@@ -9,7 +9,8 @@ def make_sequences(seq: str, start_codons: Iterable[str], stop_codons: Iterable[
         if seq[i: i+3] in start:
             for j in range(i+3, len(seq), 3):
                 if seq[j: j+3] in stop:
-                    seqs.append(seq[i: j])
+                    if len(seq[i:j]) > len_seq:
+                        seqs.append(seq[i:j])
     return seqs
 
 def make_protein(self, sequence, rna) -> str:
