@@ -1,6 +1,6 @@
 from collections import defaultdict, Counter
 from itertools import product
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Set
 
 from pycodon.sequence import Sequence
 
@@ -34,14 +34,14 @@ class Metasequence:
                 next_level = []
 
     def make_sequences(self) -> List[Sequence]:
-        sequences: List[Sequence] = []
+        sequences: Set[Sequence] = set()
         paths = product(*self.levels)
         for path in paths:
             seq = ''
             for node in path:
                 seq += self.content[node]
-            sequences.append(Sequence(seq, rna=self.rna))
-        return sequences
+            sequences.add(Sequence(seq, rna=self.rna))
+        return list(sequences)
 
     @property
     def ambiguous_nucleotides(self):
