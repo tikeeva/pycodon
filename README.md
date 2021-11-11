@@ -42,7 +42,7 @@ seq.transcription()
 
 2. Расчет количества каждого нуклеотида в последовательности:
 ```python
-seq.nucleotide_counter()
+seq.nucleotide_counter
 ```
 
 
