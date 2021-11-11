@@ -45,3 +45,4 @@ iupac_nucleotides = {
     'V': 'ACG', 'H': 'ACT', 'D': 'AGT', 'B': 'CGT', 
     'Y': 'CT', 'W': 'AT', 'S': 'CG', 'R': 'AG', 'M': 'AC', 'K': 'GT',
     'A': 'A', 'C': 'C', 'G': 'G', 'T': 'T', 'U': 'U'}
+    

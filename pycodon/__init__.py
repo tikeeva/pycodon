@@ -1,7 +1,7 @@
 import os
 
-from codon.metasequence import Metasequence
-from codon.utils import data_from_file
+from .metasequence import Metasequence
+from .utils import data_from_file
 
 def read_file(filepath: str):
     if not os.path.isfile(filepath):

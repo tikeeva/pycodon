@@ -1,10 +1,10 @@
 from collections import defaultdict, Counter
 from itertools import product
-from typing import Dict, List
+from typing import Dict, List, Tuple
 
-from codon.sequence import Sequence
+from pycodon.sequence import Sequence
 
-from .utils import make_nucleotides, validation
+from .utils import get_ambiguous_nucleotides, make_nucleotides, validation
 
 
 class Metasequence:
@@ -13,7 +13,7 @@ class Metasequence:
         validation(seq=sequence)
         self.seq: str = sequence        
         self.rna = rna
-
+        self.amb_nucleotides: Dict[str, List[int]] = []
         self.content: Dict[int, str] = defaultdict(str)
         n = 0
         level: List[int] = [n]
@@ -40,8 +40,15 @@ class Metasequence:
             seq = ''
             for node in path:
                 seq += self.content[node]
-            sequences.append(Sequence(seq))
+            sequences.append(Sequence(seq, rna=self.rna))
         return sequences
+
+    @property
+    def ambiguous_nucleotides(self):
+        if not self.amb_nucleotides:
+            self.amb_nucleotides = get_ambiguous_nucleotides(self.seq)
+        return self.amb_nucleotides
+
 
     @property
     def count_nucleotides(self) -> Counter:

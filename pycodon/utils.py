@@ -1,7 +1,34 @@
+from typing import Dict, List, Tuple, Set
 from itertools import product
 
 
-def prot_frame(seq: str):
+
+def data_from_file(file: str) -> str:
+    with open(file) as f:
+        first_row: str = f.readline()
+        if first_row.startswith('>'):
+            first_row = f.readline()
+    return first_row
+
+
+
+
+
+
+
+def make_multisequence(levels: List[List[int]], content: Dict[int, str]) -> List[str]:
+    paths: Tuple[Tuple[int, ...]] = tuple(product(*levels))
+    multisequence: List[str] = []
+    for i, path in enumerate(paths):
+        multisequence.append('')
+        for node in path:
+            multisequence[i] += content[node]
+    return multisequence
+
+
+
+
+def make_frames(seq: str, start: Set[str]):
     start = {'ATG',}
     start_bacteria = {'ATG', 'TTG', 'CTG', 'GTG'}
     stop = {'TAA', 'TGA', 'TAG'}
