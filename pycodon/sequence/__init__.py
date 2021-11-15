@@ -1,5 +1,4 @@
 from __future__ import annotations
-from _typeshed import Self
 
 from collections import Counter
 from typing import Iterable, List, Optional, Union
@@ -73,17 +72,6 @@ class Sequence(abc.Sequence):
                 raise ValueError(f'Length of sequence must be divided by 3')
             self._prot = make_protein(self.sequence, rna=self.rna)
         return self._prot
-
-    # def frame_poses(self, 
-    #                 start_codons: Iterable[str],
-    #                 stop_codons: Iterable[str],
-    #                 len_seq: int = 50) -> Optional[List[Sequence]]:
-    #     seqs: List[str] = make_sequences(seq=self.sequence,
-    #                                      start_codons=start_codons,
-    #                                      stop_codons=stop_codons,
-    #                                      len_seq=len_seq)
-        
-        # prot_frame_pos(self.sequence, start_codons=)
 
 
     def transcription(self) -> str:
