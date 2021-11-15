@@ -51,14 +51,14 @@ print(set(seq.protein for seq in seqs))
 
 6. В последовательности Sequence4 найти старт и стоп кодоны, определить рамку считывания, количество аминокислот в белке и вывести последовательность белка.
 ```python
-s4 = read_from_file('path/to/file')
+s4 = read_file('path/to/file')
 seqs = s4.make_sequences()
 start = ['ATG']
 stop = ['TAA', 'TGA', 'TAG']
 for seq in seqs:
     frames = seq.make_frames(start_codons=start, stop_codons=stop)
     for frame in frames:
-        print(frame.aminoacids)
+        print(frame.aminoacids())
         print(frame.protein)
 ```
 
