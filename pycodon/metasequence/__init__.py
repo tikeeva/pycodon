@@ -1,6 +1,6 @@
 from collections import defaultdict, Counter
 from itertools import product
-from typing import Dict, List, Tuple
+from typing import Dict, List
 
 from pycodon.sequence import Sequence
 
