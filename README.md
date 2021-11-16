@@ -1,13 +1,13 @@
-# pybioinf
-
+# pycodon
 Проект группы студентов КФУ лаборатории Хемоинформатика и молекулярное моделирование.
 
-Проект дает возможность проводить операции с последовательностями ДНК и РНК in pythonic way. Более подробно это описано [здесь](tasks.md). 
-
-Либо воспользуйтесь jupyter noteboook'ом, если вы работете в VSCode -> [practice](practice.ipynb). Иначе перейти в терминал и прописать
-```bash 
-jupyter notebook practice.ipynb
+Проект дает возможность проводить операции с последовательностями ДНК и РНК in pythonic way. 
+## Установка
+Для установки запустите следующую команду 
+```bash
+pip install pycodon
 ```
+## Описание проекта
 
 Пока разработано два класса: `Sequence` и `Metasequence`.
 
@@ -59,6 +59,9 @@ seq.protein
 ```python
 seq.aminoacids()
 ```
+Для чтения файлов используйте функцию
+```python
+from pycodon import read_file
 
-
-
+read_file('path/to/file')
+```

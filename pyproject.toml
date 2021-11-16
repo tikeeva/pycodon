@@ -6,6 +6,7 @@ build-backend = "flit_core.buildapi"
 name = "pycodon"
 authors = [{name = "[Dmitriy Zanadvornykh, Daria Malakhova, Evgenia Tikeeva]", email = "tikeeva_es@mail.ru"}]
 readme = "README.md"
+python = "^3.8"
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
 
