@@ -13,7 +13,7 @@ class Sequence:
         prot_frame_pos(self.sequence, start_codons=)
 
 
-# utils
+# utils 
 def make_sequences(seq: str, start_codons: Iterable[str], stop_codons: Iterable[str], len_seq:int):
     frame_poses = prot_frame_pos(seq, start_codons, stop_codons, len_seq)
     return [seq[start:stop] for start, stop in frame_poses]
