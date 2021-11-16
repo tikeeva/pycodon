@@ -2,7 +2,7 @@ from collections import defaultdict, Counter
 from itertools import product
 from typing import Dict, List
 
-from pycodon.sequence import Sequence
+from ..sequence import Sequence
 
 from .utils import get_ambiguous_nucleotides, make_nucleotides, validation
 

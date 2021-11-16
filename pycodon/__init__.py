@@ -1,3 +1,6 @@
+'''pycodon'''
+
+__version__ = '0.1.0'
 import os
 
 from .metasequence import Metasequence
