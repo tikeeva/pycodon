@@ -1,4 +1,3 @@
-
 # Sequence
 class Sequence:
 
