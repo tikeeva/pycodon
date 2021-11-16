@@ -3,7 +3,7 @@ from __future__ import annotations
 from collections import Counter
 from typing import Iterable, List, Optional, Union
 
-from .utils import make_protein, make_sequences, indexcheck, prot_frame_pos, valid_frame
+from .utils import make_protein, make_sequences, indexcheck
 from collections import abc
 
 class Sequence(abc.Sequence):
