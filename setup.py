@@ -8,7 +8,7 @@ README = (HERE / 'README.md').read_text()
 
 setup(
     name='pycodon',
-    version='0.1.0',
+    version='0.1.1',
     python_requires='>=3.8.0',
     description='read DNA sequences',
     long_description=README,
