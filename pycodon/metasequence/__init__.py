@@ -1,5 +1,5 @@
 from collections import defaultdict, Counter
-from itertools import product
+from itertools import product, chain
 from typing import Dict, List
 
 from ..sequence import Sequence
@@ -17,7 +17,7 @@ class Metasequence:
         self._content: Dict[int, str] = defaultdict(str)
         n = 0
         level: List[int] = [n]
-        self._levels: List[List[int]] = [level]
+        self._levels: List[List[int]] = []
         next_level: List[int] = []
 
         for nucl in sequence:
@@ -32,6 +32,8 @@ class Metasequence:
                 self._levels.append(level)
                 level = next_level
                 next_level = []
+        if level not in chain.from_iterable(self._levels):
+            self._levels.append(level)
 
     def make_sequences(self) -> List[Sequence]:
         sequences: List[Sequence] = []
@@ -48,7 +50,6 @@ class Metasequence:
         if not self._amb_nucleotides:
             self._amb_nucleotides = get_ambiguous_nucleotides(self.seq)
         return self._amb_nucleotides
-
 
     @property
     def count_nucleotides(self) -> Counter:
